@@ -3,6 +3,8 @@ package model
 
 import scala.collection.mutable.ArrayBuffer
 
+import scala.io.StdIn.readLine
+
 /** Represents a single cell on a board, known as a Panel.
   *
   * Each panel has its own effect, which can be applied to a character.
@@ -12,9 +14,11 @@ import scala.collection.mutable.ArrayBuffer
   * structures.
   *
   * @author [[https://github.com/r8vnhill Ignacio Slater M.]]
-  * @author [[https://github.com/YOUR-USERNAME YOUR NAME]]
+  * @author [[https://github.com/b1rdest Diego Vergara V.]]
   */
-trait Panel {
+trait PanelTrait {
+
+  val panelType: String
 
   /** Array of the characters currently positioned on this panel.
     *
@@ -30,7 +34,7 @@ trait Panel {
    *
    * @return a List of Panel instances that are adjacent or connected to this panel.
    */
-  var nextPanels: ArrayBuffer[Panel]
+  var nextPanels: ArrayBuffer[PanelTrait]
 
   /** Adds a character to the list of characters currently on this panel.
     *
@@ -47,4 +51,48 @@ trait Panel {
     * @param player The player character to remove from this panel.
     */
   def removeCharacter(player: PlayerCharacter): Unit
+
+  def move(character: PlayerCharacter, moves: Int): Unit
+
+  def stop(character: PlayerCharacter): Unit
 }
+
+
+/** Implements methods common for all panels**/
+abstract class Panel(panelTypeInput: String,
+                     charactersInput: ArrayBuffer[PlayerCharacter]  = ArrayBuffer[PlayerCharacter](),
+                     nextPanelsInput: ArrayBuffer[PanelTrait])
+  extends PanelTrait {
+  val panelType: String = panelTypeInput
+  val characters: ArrayBuffer[PlayerCharacter]= charactersInput
+  var nextPanels: ArrayBuffer[PanelTrait] = nextPanelsInput
+
+  def addCharacter(character: PlayerCharacter): Unit = {
+    characters += character
+  }
+
+  def removeCharacter(character: PlayerCharacter):Unit = {
+    characters -= character
+  }
+
+    /**Allows you to move between Panels recursively.If no more moves are allowed, the it calls for the
+     * stop() method and adds the character to characters
+     **/
+  def move(character: PlayerCharacter, moves: Int): Unit = {
+    if (moves == 0) {
+      addCharacter(character)
+      stop(character)
+    }
+    else {
+      if (nextPanels.size == 1) {
+        nextPanels(0).move(character, moves - 1)
+      }
+      else {
+        var index:Int = readLine("Enter which Panel you want to go to: ").toInt
+        nextPanels(index).move(character, moves - 1)
+      }
+    }
+  }
+  def stop(character:PlayerCharacter):Unit
+}
+

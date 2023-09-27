@@ -1,5 +1,5 @@
 # 99.7% Citric Liquid
-
+Readme in "spanglish"
 ## About
 
 `99.7% Citric Liquid` is a simplified clone of the renowned game, `100% Orange Juice`. Its main
@@ -9,10 +9,10 @@ purpose is to serve as an educational tool, teaching foundational programming co
 
 ---
 
-## For Students
+## Design Decitions
 
-The remainder of this README is yours to complete. Take this opportunity to describe your
-contributions, the design decisions you've made, and any other information you deem necessary.
+-All trait, abstract classes and class parameters are defined as "var". This is to support further 
+modification of these values along the development of the Tarea (Example: ATK Buff)
 
 
 
