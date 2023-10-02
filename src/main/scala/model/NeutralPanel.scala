@@ -3,8 +3,8 @@ package model
 
 import scala.collection.mutable.ArrayBuffer
 
-class NeutralPanel(charactersInput: ArrayBuffer[PlayerCharacter],
-                   nextPanelsInput: ArrayBuffer[PanelTrait])
+class NeutralPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
+                   nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
                   extends Panel(
                     "Neutral",
                     charactersInput,

@@ -9,8 +9,8 @@ import scala.collection.mutable.ArrayBuffer
  * @param nextPanelsInput The Panels that follow this Panel. Can not be empty.
  */
 
-class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter],
-                     nextPanelsInput: ArrayBuffer[PanelTrait])
+class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
+                     nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
                     extends Panel(
                       "Encounter",
                       charactersInput,

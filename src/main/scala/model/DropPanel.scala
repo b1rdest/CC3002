@@ -4,8 +4,8 @@ package model
 import scala.collection.mutable.ArrayBuffer
 import scala.math._
 
-class DropPanel(charactersInput: ArrayBuffer[PlayerCharacter],
-                 nextPanelsInput: ArrayBuffer[PanelTrait])
+class DropPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
+                nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
                 extends Panel(
                   "Drop",
                   charactersInput,
@@ -13,6 +13,6 @@ class DropPanel(charactersInput: ArrayBuffer[PlayerCharacter],
 
   def stop(character: PlayerCharacter): Unit = {
     var roll: Int = character.rollDice()
-    character.Stars -= roll*character.Norma
+    character.Stars -= roll*character.getNorma
   }
 }

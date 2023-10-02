@@ -42,7 +42,7 @@ trait PanelTrait {
     *
     * @param player The player character to add to this panel.
     */
-  def addCharacter(player: PlayerCharacter): Unit
+  protected def addCharacter(player: PlayerCharacter): Unit
 
   /** Removes a character from the list of characters currently on this panel.
     *
@@ -50,18 +50,18 @@ trait PanelTrait {
     *
     * @param player The player character to remove from this panel.
     */
-  def removeCharacter(player: PlayerCharacter): Unit
+  protected def removeCharacter(player: PlayerCharacter): Unit
 
   def move(character: PlayerCharacter, moves: Int): Unit
 
-  def stop(character: PlayerCharacter): Unit
+  protected def stop(character: PlayerCharacter): Unit
 }
 
 
 /** Implements methods common for all panels**/
 abstract class Panel(panelTypeInput: String,
                      charactersInput: ArrayBuffer[PlayerCharacter]  = ArrayBuffer[PlayerCharacter](),
-                     nextPanelsInput: ArrayBuffer[PanelTrait])
+                     nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
   extends PanelTrait {
   val panelType: String = panelTypeInput
   val characters: ArrayBuffer[PlayerCharacter]= charactersInput

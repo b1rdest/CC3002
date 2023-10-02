@@ -7,18 +7,18 @@ import scala.util.Random
  *
  */
 trait GameUnitTrait {
-  var HP: Int
-  var Alive: Boolean
-  var Stars: Int
-  var name: String
-  var maxHp :Int
-  var attack :Int
-  var defense :Int
-  var evasion :Int
-  var randomNumberGenerator: Random
+  protected var HP: Int
+  protected var Alive: Boolean
+  protected var Stars: Int
+  protected var name: String
+  protected var maxHp :Int
+  protected var attack :Int
+  protected var defense :Int
+  protected var evasion :Int
+  protected var randomNumberGenerator: Random
 
   /** Abstract method for when the Unit's HP reaches 0. */
-    def KO(): Unit
+  protected def KO(): Unit
 
   /** Rolls a dice and returns a value between 1 to 6. */
   def rollDice(): Int = {

@@ -4,15 +4,15 @@ package model
 import scala.collection.mutable.ArrayBuffer
 import scala.math._
 
-class BonusPanel(charactersInput: ArrayBuffer[PlayerCharacter],
-                  nextPanelsInput: ArrayBuffer[PanelTrait])
+class BonusPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
+                 nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
                 extends Panel(
                   "Bonus",
                   charactersInput,
                   nextPanelsInput) {
 
   def stop(character: PlayerCharacter): Unit = {
-    var roll: Int = character.rollDice()
-    character.Stars += min(roll*character.Norma, roll*3)
+    val roll: Int = character.rollDice()
+    character.Stars += min(roll*character.getNorma, roll*3)
   }
 }

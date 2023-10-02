@@ -57,11 +57,17 @@ class PlayerCharacter(nameInput: String,
                       DEFInput,
                       EVAInput,
                       RandomInput) {
-  var Wins: Int = 0
-  var Norma: Int = 1
-  var NormaCondition: String =  ""
-  var StarsCondition: Int = 10
-  var WinsCondition: Int = 1
+  private var Wins: Int = 0
+  private var Norma: Int = 1
+  private var NormaCondition: String =  ""
+  private var StarsCondition: Int = 10
+  private var WinsCondition: Int = 1
+
+  def getNorma: Int = Norma
+
+  def setNorma(newNorma: Int): Unit = {
+    Norma = newNorma
+  }
 
   /** The function KO() switches the Alive variable to false if it is initially true, putting the player into Recovery mode.
    *  If Alive is false (Recovery mode), it rolls a Dice and will only switch it to true if the requirements are fulfilled.
@@ -82,7 +88,7 @@ class PlayerCharacter(nameInput: String,
   /**Triggers a battle between the Player and a Unit
    * @param enemy The enemy that the PlayerCharacter will fight. Has to be a GameUnit (PlayerCharacter or WildUnit).
    */
-  def Battle(enemy: GameUnitTrait): Unit = {
+  private[model] def Battle(enemy: GameUnitTrait): Unit = {
     //** Código de pelea entre PlayerCharacter y PlayerCharacter/WildUnit**//
   }
 
@@ -91,7 +97,7 @@ class PlayerCharacter(nameInput: String,
    * condition.
    *
    */
-  def NormaClear(): Unit = {
+  private def NormaClear(): Unit = {
     Norma += 1
     Norma match {
       case 2 => {
@@ -123,7 +129,7 @@ class PlayerCharacter(nameInput: String,
    * the necessary conditions to obtain one Norma Point according to the condition
    * they chose. If successful, calls for NormClear().
    */
-  def NormaCheck(): Unit = {
+  private[model] def NormaCheck(): Unit = {
     if (NormaCondition == "S") {
       if (Stars >= StarsCondition)
         NormaClear()
