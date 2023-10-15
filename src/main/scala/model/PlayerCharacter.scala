@@ -27,9 +27,9 @@ import scala.util.control.Breaks._
   *
   * @param name The name of the player. This is an identifier and should be unique.
   * @param maxHp The maximum health points a player can have. It represents the player's endurance.
-  * @param attack The player's capability to deal damage to opponents.
-  * @param defense The player's capability to resist or mitigate damage from opponents.
-  * @param evasion The player's skill to completely avoid certain attacks.
+  * @param ATK The player's capability to deal damage to opponents.
+  * @param DEF The player's capability to resist or mitigate damage from opponents.
+  * @param EVA The player's skill to completely avoid certain attacks.
   * @param randomNumberGenerator A utility to generate random numbers. Defaults to a new `Random`
   *                              instance.
   * @param Wins Amount of victories accumulated by the player by through fighting against other Players or Wild Units.
@@ -57,7 +57,6 @@ class PlayerCharacter(nameInput: String,
                       DEFInput,
                       EVAInput,
                       RandomInput) {
-  private var Wins: Int = 0
   private var Norma: Int = 1
   private var NormaCondition: String =  ""
   private var StarsCondition: Int = 10
@@ -72,15 +71,21 @@ class PlayerCharacter(nameInput: String,
   /** The function KO() switches the Alive variable to false if it is initially true, putting the player into Recovery mode.
    *  If Alive is false (Recovery mode), it rolls a Dice and will only switch it to true if the requirements are fulfilled.
    **/
-  def KO(): Unit = {
+  def KO(): Int = {
     if (Alive) {
       Alive = false
+      setStars(getStars/2)
+      return getStars
     }
     else {
       /** We assume that variable Chapters is public within the package and give it a placeholder value */
       var Chapters = 1
       if (rollDice() >= 6 - Chapters) {
         Alive = true
+        0
+      }
+      else {
+        0
       }
     }
   }

@@ -11,9 +11,9 @@ class PlayerCharacterTest extends munit.FunSuite {
   */
   private val name = "testPlayer"
   private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
+  private val ATK = 1
+  private val DEF = 1
+  private val EVA = 1
   private var randomNumberGenerator = new Random(11)
   /* Add any other constants you need here... */
 
@@ -32,9 +32,9 @@ class PlayerCharacterTest extends munit.FunSuite {
     character = new PlayerCharacter(
       name,
       maxHp,
-      attack,
-      defense,
-      evasion,
+      ATK,
+      DEF,
+      EVA,
       randomNumberGenerator
     )
   }
@@ -42,9 +42,9 @@ class PlayerCharacterTest extends munit.FunSuite {
   test("A character should have correctly set their attributes") {
     assertEquals(character.name, name)
     assertEquals(character.maxHp, maxHp)
-    assertEquals(character.attack, attack)
-    assertEquals(character.defense, defense)
-    assertEquals(character.evasion, evasion)
+    assertEquals(character.ATK, ATK)
+    assertEquals(character.DEF, DEF)
+    assertEquals(character.EVA, EVA)
   }
 
   // Two ways to test randomness (you can use any of them):
@@ -61,7 +61,7 @@ class PlayerCharacterTest extends munit.FunSuite {
   // are always the same for the same seed.
   test("A character should be able to roll a dice with a fixed seed") {
     val other =
-      new PlayerCharacter(name, maxHp, attack, defense, evasion, new Random(11))
+      new PlayerCharacter(name, maxHp, ATK, DEF, EVA, new Random(11))
     for (_ <- 1 to 10) {
       assertEquals(character.rollDice(), other.rollDice())
     }

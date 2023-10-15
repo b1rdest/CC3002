@@ -16,8 +16,10 @@ class WildUnit(nameInput: String,
                       DEFInput,
                       EVAInput,
                       RandomInput) {
-  def KO(): Unit = {
+  def KO(): Int = {
     Alive = false
+    setStars(0)
+    return getStars
 
     /** Código para borrar la WildUnit cuando muere* */
   }
@@ -31,23 +33,23 @@ class WildUnit(nameInput: String,
     if (creature == 1 || creature == 2) {
       this.name = "Chicken"
       this.maxHp = 3
-      this.attack = -1
-      this.defense = -1
-      this.evasion = 1
+      this.ATK = -1
+      this.DEF = -1
+      this.EVA = 1
     }
     else if (creature == 3 || creature == 4) {
       this.name = "Robo Ball"
       this.maxHp = 3
-      this.attack= -1
-      this.defense = 1
-      this.evasion = -1
+      this.ATK= -1
+      this.DEF = 1
+      this.EVA = -1
     }
     else {
       this.name = "Seagull"
       this.maxHp = 3
-      this.attack = 1
-      this.defense = -1
-      this.evasion = -1
+      this.ATK = 1
+      this.DEF = -1
+      this.EVA = -1
     }
   }
 }

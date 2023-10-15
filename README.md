@@ -9,7 +9,10 @@ purpose is to serve as an educational tool, teaching foundational programming co
 
 ---
 
-## Design Decitions
+## Design Descitions
+
+-For Tarea 2 - EP 4:
+    The effects for Bonus Panel and Drop Panel have been added in the stop() function
 
 -All trait, abstract classes and class parameters are defined as "var". This is to support further 
 modification of these values along the development of the Tarea (Example: ATK Buff)
