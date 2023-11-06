@@ -1,8 +1,9 @@
 package cl.uchile.dcc.citric
-package model
+package model.board
+
+import cl.uchile.dcc.citric.model.unit.PlayerCharacter
 
 import scala.collection.mutable.ArrayBuffer
-
 import scala.io.StdIn.readLine
 
 /** Represents a single cell on a board, known as a Panel.
@@ -16,50 +17,9 @@ import scala.io.StdIn.readLine
   * @author [[https://github.com/r8vnhill Ignacio Slater M.]]
   * @author [[https://github.com/b1rdest Diego Vergara V.]]
   */
-trait PanelTrait {
-
-  val panelType: String
-
-  /** Array of the characters currently positioned on this panel.
-    *
-    * In the game, multiple characters might be on the same panel at once, e.g., if multiple players
-    * land on the same space.
-    */
-  val characters: ArrayBuffer[PlayerCharacter]
-
-  /** An array of panels that are directly connected to this one.
-   *
-   * In the context of the game, multiple routes or paths may exist, this could represent the
-   * possible next steps a player might take after being on this panel.
-   *
-   * @return a List of Panel instances that are adjacent or connected to this panel.
-   */
-  var nextPanels: ArrayBuffer[PanelTrait]
-
-  /** Adds a character to the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves to this panel or starts their turn on it.
-    *
-    * @param player The player character to add to this panel.
-    */
-  protected def addCharacter(player: PlayerCharacter): Unit
-
-  /** Removes a character from the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves off this panel.
-    *
-    * @param player The player character to remove from this panel.
-    */
-  protected def removeCharacter(player: PlayerCharacter): Unit
-
-  def move(character: PlayerCharacter, moves: Int): Unit
-
-  protected def stop(character: PlayerCharacter): Unit
-}
-
 
 /** Implements methods common for all panels**/
-abstract class Panel(panelTypeInput: String,
+abstract class PanelAbstract(panelTypeInput: String,
                      charactersInput: ArrayBuffer[PlayerCharacter]  = ArrayBuffer[PlayerCharacter](),
                      nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
   extends PanelTrait {

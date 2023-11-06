@@ -1,12 +1,12 @@
 package cl.uchile.dcc.citric
-package model
+package model.unit
 
 import scala.util.Random
 
 /** The GameUnitTrait defines abstract common variables, values and methods for PlayerCharacter and WildUnit
  *
  */
-trait GameUnitTrait {
+trait GameUnit {
   protected var HP: Int
   def getHP: Int = HP
   def setHP(newHP: Int): Unit = {
@@ -38,7 +38,8 @@ trait GameUnitTrait {
   protected var randomNumberGenerator: Random
 
   /** Abstract method for when the Unit's HP reaches 0. Returns
-   * the corresponding amount of Stars when killed in Battle */
+   * the corresponding amount of Stars when killed in Battle
+   * IT IS ONLY CALLED WHEN THE UNIT'S HP REACHES 0.*/
   protected def KO(): Int
 
   /** Rolls a dice and returns a value between 1 to 6. */
@@ -47,15 +48,13 @@ trait GameUnitTrait {
   }
 
   /** Methods for battle */
-  def attack(defender: GameUnitTrait, method: Int => Int): Unit = {
-    if (defender.Alive && getAlive) {
-      setStars(getStars + method(rollDice() + ATK))
-      if (!defender.getAlive) {
-        if (defender.getClass == PlayerCharacter) {
-          setWins(getWins + 1)
-        }
-        setWins(getWins + 1)
-      }
+  /** attack: simply returns the attack of the unit */
+  def attack(): Unit = {
+    if (getAlive) {
+      this.ATK+this.rollDice()
+    }
+    else {
+      0
     }
   }
   /** Methods for defense. Return the Stars of the defendingUnit */
@@ -86,22 +85,4 @@ trait GameUnitTrait {
       return 0
     }
   }
-}
-
-/** Superclass constructor for both PlayerCharacter and WildUnit**/
-abstract class GameUnit (nameInput: String,
-                         maxHpInput: Int,
-                         ATKInput: Int,
-                         DEFInput: Int,
-                         EVAInput: Int,
-                         RandomInput: Random) extends GameUnitTrait{
-  var maxHp: Int = maxHpInput
-  var HP: Int = maxHp
-  var ATK: Int = ATKInput
-  var DEF: Int = DEFInput
-  var EVA: Int = EVAInput
-  var Alive: Boolean = true
-  var name: String = nameInput
-  var Stars: Int = 0
-  var randomNumberGenerator: Random = RandomInput
 }

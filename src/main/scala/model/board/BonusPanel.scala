@@ -1,18 +1,20 @@
 package cl.uchile.dcc.citric
-package model
+package model.board
+
+import cl.uchile.dcc.citric.model.unit.PlayerCharacter
 
 import scala.collection.mutable.ArrayBuffer
 import scala.math._
 
 class BonusPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
                  nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
-                extends Panel(
+                extends PanelAbstract(
                   "Bonus",
                   charactersInput,
                   nextPanelsInput) {
 
   def stop(character: PlayerCharacter): Unit = {
     val roll: Int = character.rollDice()
-    character.Stars += min(roll*character.getNorma, roll*3)
+    character.setStars(character.getStars + min(roll*character.getNorma.level, roll*3))
   }
 }

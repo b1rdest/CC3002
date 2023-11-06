@@ -1,5 +1,7 @@
 package cl.uchile.dcc.citric
-package model
+package model.board
+
+import cl.uchile.dcc.citric.model.unit.PlayerCharacter
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -11,7 +13,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
                      nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
-                    extends Panel(
+                    extends PanelAbstract(
                       "Encounter",
                       charactersInput,
                       nextPanelsInput) {
@@ -22,7 +24,6 @@ class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer
    * @param character The Player that stops on this Panel. Calls to it's Battle() method.
    */
   def stop(character: PlayerCharacter): Unit = {
-    val creatura: WildUnit = new WildUnit()
-    character.Battle(creatura)
+    //* Uses class constructor to create a new Random Wild Unit and battles it*/
   }
 }

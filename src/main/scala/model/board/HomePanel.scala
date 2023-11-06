@@ -1,5 +1,7 @@
 package cl.uchile.dcc.citric
-package model
+package model.board
+
+import cl.uchile.dcc.citric.model.unit.PlayerCharacter
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.StdIn.readLine
@@ -7,7 +9,7 @@ import scala.io.StdIn.readLine
 class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
                  nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait](),
                  ownerInput: PlayerCharacter)
-                extends Panel(
+                extends PanelAbstract(
                       "Home",
                       charactersInput,
                       nextPanelsInput) {
