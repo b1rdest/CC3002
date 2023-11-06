@@ -7,9 +7,8 @@ import scala.collection.mutable.ArrayBuffer
 import scala.math._
 
 class DropPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
-                nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
+                nextPanelsInput: ArrayBuffer[Panel] = ArrayBuffer[Panel]())
                 extends PanelAbstract(
-                  "Drop",
                   charactersInput,
                   nextPanelsInput){
 

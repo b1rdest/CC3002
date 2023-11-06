@@ -3,6 +3,8 @@ package model.unit
 
 import scala.util.Random
 
+import cl.uchile.dcc.citric.model.norma._
+
 class PlayerCharacterTest extends munit.FunSuite {
   /*
   REMEMBER: It is a good practice to use constants for the values that are used in multiple
@@ -45,6 +47,7 @@ class PlayerCharacterTest extends munit.FunSuite {
     assertEquals(character.ATK, ATK)
     assertEquals(character.DEF, DEF)
     assertEquals(character.EVA, EVA)
+    assertEquals(character.randomNumberGenerator, randomNumberGenerator)
   }
 
   // Two ways to test randomness (you can use any of them):
@@ -66,4 +69,43 @@ class PlayerCharacterTest extends munit.FunSuite {
       assertEquals(character.rollDice(), other.rollDice())
     }
   }
+
+  test("KO() should return stars if player is alive, and 0 if they are not") {
+    assert(character.KO() == character.getStars/2)
+    assert(character.KO() == 0)
+  }
+  test("NormaCheck() runs correctly when conditions are not fulfilled") {
+
+    character.setStars(-1)
+    character.setWins(-1)
+    character.NormaCheck()
+    assert((character.getNorma).isInstanceOf[Norma1])
+    character.setStars(99)
+    character.setWins(99)
+    val norma2 = new Norma2()
+    character.setNorma(norma2)
+    character.NormaCheck()
+    assert((character.getNorma).isInstanceOf[Norma3])
+  }
+
+  test("Incomplete Functions") {
+    character.Battle(character)
+  }
+
+  test("Receive Wins correctly allocates Wins depending on the type of defeated unit") {
+    val bellaco = new Chicken()
+    val idiot = new PlayerCharacter(
+      name,
+      maxHp,
+      ATK,
+      DEF,
+      EVA,
+      randomNumberGenerator
+    )
+    character.receiveWins(bellaco)
+    assert(character.getWins == 1)
+    character.receiveWins(idiot)
+    assert(character.getWins == 3)
+  }
+
 }

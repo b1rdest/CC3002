@@ -12,9 +12,8 @@ import scala.collection.mutable.ArrayBuffer
  */
 
 class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
-                     nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
+                     nextPanelsInput: ArrayBuffer[Panel] = ArrayBuffer[Panel]())
                     extends PanelAbstract(
-                      "Encounter",
                       charactersInput,
                       nextPanelsInput) {
 

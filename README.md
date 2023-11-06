@@ -23,15 +23,17 @@ I hope that this homework is up to the expected standards.
 For Norma:
         
     -As sugested by the teaching team <3, Norma has been implemented as a trait and each level as a unique class with the concerning attributes.
+    
+    -Norma does not currently have implemented a variable for the condition chosen by the player, so it just checks both.
 
-From PlayerCharacter:
+For PlayerCharacter:
         
     -NormaClear() has been merged into NormaCheck().
             
     -NormaCondition has been removed. Now Norma's functionality is fully capable of modifying itself accordingly (instead of relying on PlayerCharacter's paramaters).
         
 
-From WildUnitAbstract.
+For WildUnitAbstract.
         
     -WildUnit has been replaced by WildUnitAbstract
     
@@ -40,6 +42,10 @@ From WildUnitAbstract.
     -KO() function return the corresponding amount of stars upon being defeated. The assignation of stars will be made within the controller with the setWins and setStars setters from PlayerCharacter.
         From PanelAbstract.
             -Panel has been replaced by PanelAbstract
+
+For Panels:
+
+    -Attribute panelType for PanelAbstract has been removed since it was redundant
 
 
 -For Tarea 2 - EP 4:

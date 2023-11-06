@@ -18,6 +18,7 @@ abstract class WildUnitAbstract(nameInput: String,
                       RandomInput) {
 
   //* Código base para cualquier Wild Unit*/
+  //* For now, it is never used,W since all enemies override this function*/
   def KO(): Int = {
     Alive = false
     setStars(0)

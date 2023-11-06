@@ -7,13 +7,16 @@ import scala.collection.mutable.ArrayBuffer
 import scala.io.StdIn.readLine
 
 class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[PlayerCharacter](),
-                 nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait](),
+                 nextPanelsInput: ArrayBuffer[Panel] = ArrayBuffer[Panel](),
                  ownerInput: PlayerCharacter)
                 extends PanelAbstract(
-                      "Home",
                       charactersInput,
                       nextPanelsInput) {
     private val owner: PlayerCharacter = ownerInput
+
+    def getOwner():PlayerCharacter ={
+      this.owner
+    }
 
     def move(character: PlayerCharacter, moves: Int, decision: String): Unit = {
         if (moves == 0) {
@@ -33,7 +36,9 @@ class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Pla
     }
 
     def stop(character: PlayerCharacter): Unit = {
+      if (character == owner) {
         character.HP += 1
         character.NormaCheck()
+      }
     }
 }

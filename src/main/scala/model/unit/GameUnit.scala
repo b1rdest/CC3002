@@ -49,7 +49,7 @@ trait GameUnit {
 
   /** Methods for battle */
   /** attack: simply returns the attack of the unit */
-  def attack(): Unit = {
+  def attack(): Int = {
     if (getAlive) {
       this.ATK+this.rollDice()
     }
@@ -57,32 +57,16 @@ trait GameUnit {
       0
     }
   }
-  /** Methods for defense. Return the Stars of the defendingUnit */
-  def defend(attackvalue: Int): Int = {
+  /** Methods for defense. Changes the HP given a attack */
+  def defend(attackvalue: Int): Unit = {
     setHP(0.max(getHP - 1.max(attackvalue - (rollDice() + DEF))))
-
-    /** This part of the code is repeated. It is optimizable. */
-    if (getHP == 0) {
-      setAlive(false)
-      return KO()
-    }
-    else {
-      0
-    }
   }
 
-  def evade(attackvalue: Int): Int = {
+  def evade(attackvalue: Int): Unit = {
     if (EVA + rollDice() > attackvalue) {
     }
     else {
       setHP(0.max(getHP - attackvalue))
-    }
-    if (getHP == 0){
-      setAlive(false)
-      return KO()
-    }
-    else {
-      return 0
     }
   }
 }

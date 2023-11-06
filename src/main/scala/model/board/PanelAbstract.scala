@@ -19,13 +19,12 @@ import scala.io.StdIn.readLine
   */
 
 /** Implements methods common for all panels**/
-abstract class PanelAbstract(panelTypeInput: String,
+abstract class PanelAbstract(
                      charactersInput: ArrayBuffer[PlayerCharacter]  = ArrayBuffer[PlayerCharacter](),
-                     nextPanelsInput: ArrayBuffer[PanelTrait] = ArrayBuffer[PanelTrait]())
-  extends PanelTrait {
-  val panelType: String = panelTypeInput
-  val characters: ArrayBuffer[PlayerCharacter]= charactersInput
-  var nextPanels: ArrayBuffer[PanelTrait] = nextPanelsInput
+                     nextPanelsInput: ArrayBuffer[Panel] = ArrayBuffer[Panel]())
+  extends Panel {
+  val characters: ArrayBuffer[PlayerCharacter] = charactersInput
+  var nextPanels: ArrayBuffer[Panel] = nextPanelsInput
 
   def addCharacter(character: PlayerCharacter): Unit = {
     characters += character
@@ -48,7 +47,7 @@ abstract class PanelAbstract(panelTypeInput: String,
         nextPanels(0).move(character, moves - 1)
       }
       else {
-        var index:Int = readLine("Enter which Panel you want to go to: ").toInt
+        var index = 0; //* index will be chosen by the player so they can go to the panel they want
         nextPanels(index).move(character, moves - 1)
       }
     }

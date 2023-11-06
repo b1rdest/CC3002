@@ -16,9 +16,7 @@ import scala.collection.mutable.ArrayBuffer
  * @author [[https://github.com/r8vnhill Ignacio Slater M.]]
  * @author [[https://github.com/b1rdest Diego Vergara V.]]
  */
-trait PanelTrait {
-
-  val panelType: String
+trait Panel {
 
   /** Array of the characters currently positioned on this panel.
    *
@@ -34,7 +32,7 @@ trait PanelTrait {
    *
    * @return a List of Panel instances that are adjacent or connected to this panel.
    */
-  var nextPanels: ArrayBuffer[PanelTrait]
+  var nextPanels: ArrayBuffer[Panel]
 
   /** Adds a character to the list of characters currently on this panel.
    *

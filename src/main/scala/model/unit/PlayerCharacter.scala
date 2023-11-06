@@ -112,6 +112,4 @@ class PlayerCharacter(nameInput: String,
   def receiveWins(unit: PlayerCharacter): Unit = {
     this.setWins(this.getWins + 2)
   }
-
-
 }
