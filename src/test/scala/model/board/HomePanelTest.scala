@@ -9,6 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class HomePanelTest extends munit.FunSuite {
   private val amigo1 = new PlayerCharacter("sapo", 6, 6, 6, 6)
+  private val amigo2 = new PlayerCharacter("sepo", 6, 6, 6, 6)
   private val panel1 = new NeutralPanel()
   private val homePanel = new HomePanel(ArrayBuffer[PlayerCharacter](amigo1), ArrayBuffer[Panel](panel1), amigo1)
   private var characters = ArrayBuffer[PlayerCharacter](amigo1)
@@ -22,6 +23,21 @@ class HomePanelTest extends munit.FunSuite {
     assert(homePanelEmpty.nextPanels == ArrayBuffer[Panel]())
     assert(homePanelEmpty.characters == ArrayBuffer[PlayerCharacter]())
   }
+
+  test("move function lets the player stay only if they are the owner") {
+    homePanelEmpty.move(amigo1, 0, "Y")
+    assert(homePanel.characters == ArrayBuffer[PlayerCharacter](amigo1))
+    homePanelEmpty.removeCharacter(amigo1)
+    homePanelEmpty.move(amigo1, 2, "Y")
+    assert(homePanel.characters == ArrayBuffer[PlayerCharacter](amigo1))
+    homePanelEmpty.removeCharacter(amigo1)
+    homePanelEmpty.move(amigo1, 2, "N")
+    assert(homePanelEmpty.characters == ArrayBuffer[PlayerCharacter]())
+    homePanelEmpty.nextPanels = ArrayBuffer[Panel](panel1)
+    homePanelEmpty.move(amigo2, 2, "Y")
+    assert(homePanelEmpty.characters == ArrayBuffer[PlayerCharacter]())
+  }
+
   test("stop() function correctly calls for normaCheck()") {
     val currenthp = amigo1.getHP
     val currentnorma = amigo1.getNorma
