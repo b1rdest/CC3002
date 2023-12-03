@@ -37,10 +37,11 @@ abstract class PanelAbstract(
     /**Allows you to move between Panels recursively.If no more moves are allowed, the it calls for the
      * stop() method and adds the character to characters
      **/
-  def move(character: PlayerCharacter, moves: Int): Unit = {
+  def move(character: PlayerCharacter, moves: Int): Panel = {
     if (moves == 0) {
       addCharacter(character)
       stop(character)
+      this
     }
     else {
       if (nextPanels.size == 1) {

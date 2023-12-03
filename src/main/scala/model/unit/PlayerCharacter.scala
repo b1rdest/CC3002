@@ -5,6 +5,7 @@ import scala.util.Random
 import model.norma.{Norma, Norma1}
 
 import cl.uchile.dcc.citric.model.board
+import cl.uchile.dcc.citric.model.board.Panel
 
 /** The `PlayerCharacter` class represents a character or avatar in the game, encapsulating
   * several attributes such as health points, attack strength, defense capability,
@@ -46,7 +47,8 @@ class PlayerCharacter(nameInput: String,
               ATKInput: Int,
               DEFInput: Int,
               EVAInput: Int,
-              RandomInput: Random = new Random())
+              RandomInput: Random = new Random(),
+              PanelInput: Panel)
               extends GameUnitAbstract(nameInput,
                       maxHPInput,
                       ATKInput,
@@ -54,6 +56,7 @@ class PlayerCharacter(nameInput: String,
                       EVAInput,
                       RandomInput) {
   private var normaLevel: Norma = new Norma1()
+  private var currentPanel: Panel =  PanelInput
 
   def getNorma: Norma = {
     this.normaLevel
@@ -111,5 +114,9 @@ class PlayerCharacter(nameInput: String,
   //*Overloaded function of receiveWins. If the defeated unit is a Player, then 2 wins are achieved*/
   def receiveWins(unit: PlayerCharacter): Unit = {
     this.setWins(this.getWins + 2)
+  }
+
+  def move(moves: Int): Panel = {
+      this.currentPanel.move(character = this, moves)
   }
 }

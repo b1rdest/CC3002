@@ -18,14 +18,15 @@ class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Pla
       this.owner
     }
 
-    def move(character: PlayerCharacter, moves: Int, decision: String): Unit = {
+    def move(character: PlayerCharacter, moves: Int): Panel = {
         if (moves == 0) {
             addCharacter(character)
             stop(character)
+            this
         }
         else if (character == owner) {
             //var stops = readLine("Stop in your Home Panel? [Y]es or [N]o: ")//
-
+            val decision: String = "Y"
             if (decision == "Y") {
                 move(character, 0)
             }

@@ -50,7 +50,7 @@ trait Panel {
    */
   protected def removeCharacter(player: PlayerCharacter): Unit
 
-  def move(character: PlayerCharacter, moves: Int): Unit
+  def move(character: PlayerCharacter, moves: Int): Panel
 
   protected def stop(character: PlayerCharacter): Unit
 }
