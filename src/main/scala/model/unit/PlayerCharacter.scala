@@ -6,6 +6,7 @@ import model.norma.{Norma, Norma1}
 
 import cl.uchile.dcc.citric.model.board
 import cl.uchile.dcc.citric.model.board.{NeutralPanel, Panel}
+import cl.uchile.dcc.citric.model.game.GameController
 
 /** The `PlayerCharacter` class represents a character or avatar in the game, encapsulating
   * several attributes such as health points, attack strength, defense capability,
@@ -48,15 +49,21 @@ class PlayerCharacter(nameInput: String,
               DEFInput: Int,
               EVAInput: Int,
               RandomInput: Random = new Random(),
-              PanelInput: Panel = new NeutralPanel())
+              PanelInput: Panel = new NeutralPanel(),
+                      controllerInput: GameController = new GameController)
               extends GameUnitAbstract(nameInput,
                       maxHPInput,
                       ATKInput,
                       DEFInput,
                       EVAInput,
                       RandomInput) {
-  private var normaLevel: Norma = new Norma1()
+  val controller: GameController = controllerInput
+  private var normaLevel: Norma = new Norma1(this, controller) //also works as a subscriber
   var currentPanel: Panel =  PanelInput
+
+  def setPanel(newPanel: Panel): Unit ={
+    this.currentPanel = newPanel
+  }
 
   def getNorma: Norma = {
     this.normaLevel

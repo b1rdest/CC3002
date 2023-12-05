@@ -26,8 +26,12 @@ class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Pla
 
 
     override def move(character: PlayerCharacter, moves: Int): Panel = {
+        if (this.characters.contains(character)) {
+          this.removeCharacter(character)
+        }
         if (moves == 0) {
             addCharacter(character)
+            character.setPanel(this)
             stop(character)
             this
         }
@@ -58,9 +62,12 @@ class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Pla
     }
 
     def stop(character: PlayerCharacter): Unit = {
+      println(character.getName + " has stopped in their Home Panel! Time to rest.")
+
       if (character == owner) {
-        character.HP += 1
+        character.HP = character.maxHp.min(character.getHP + 1)
         character.NormaCheck()
       }
+      this.battlePlayer()
     }
 }

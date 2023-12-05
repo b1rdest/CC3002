@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.board
 
-import cl.uchile.dcc.citric.model.unit.PlayerCharacter
+import model.unit.PlayerCharacter
 
 import scala.collection.mutable.ArrayBuffer
 import model.utility.{EnemyFactory, InputHandler}
@@ -30,6 +30,8 @@ class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer
   def stop(character: PlayerCharacter): Unit = {
     val factory = new EnemyFactory
     val enemy = factory.create()
+    println(character.getName + " has stopped in an Encounter Panel! Prepare for Battle! ")
+
 
     //The battle between the player and the random monster begins
     println("Player ".concat(character.getName).concat(" is fightintg a wild ").concat(enemy.getName))
@@ -63,5 +65,6 @@ class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer
         enemy.setStars(enemy.getStars + character.KO())
       }
     }
+    this.battlePlayer()
   }
 }

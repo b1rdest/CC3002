@@ -1,8 +1,9 @@
 package cl.uchile.dcc.citric
 package model.unit
 
-import scala.util.Random
+import cl.uchile.dcc.citric.model.game.GameController
 
+import scala.util.Random
 import cl.uchile.dcc.citric.model.norma._
 
 class PlayerCharacterTest extends munit.FunSuite {
@@ -83,7 +84,7 @@ class PlayerCharacterTest extends munit.FunSuite {
     assert((character.getNorma).isInstanceOf[Norma1])
     character.setStars(99)
     character.setWins(99)
-    val norma2 = new Norma2()
+    val norma2 = new Norma2(character, new GameController)
     character.setNorma(norma2)
     character.NormaCheck()
     assert((character.getNorma).isInstanceOf[Norma3])

@@ -1,14 +1,25 @@
 package cl.uchile.dcc.citric
 package model.norma
 
-class Norma2 extends Norma{
+import model.game.GameController
+import model.unit.PlayerCharacter
+
+import cl.uchile.dcc.citric.model.utility.InputHandler
+
+class Norma2(playerInput: PlayerCharacter, controllerInput: GameController) extends NormaAbstract {
   val level = 2
-  val starGoal: Int = 10
-  val winGoal: Int = 1
+  var starGoal: Int = 10
+  var winGoal: Int = 1
+  val player: PlayerCharacter = playerInput
+  val controller: GameController = controllerInput
+  var inputHandler: InputHandler = new InputHandler
 
   def increase(wins: Int, stars: Int): Norma = {
     if (wins >= winGoal || stars >= starGoal) { //* Will be replaced by the condition chosen by the player to acquire Norma */
-      new Norma3()
+      val outNorma = new Norma3(this.player, controller)
+      outNorma.inputHandler = this.inputHandler //this is for testing purposes
+      outNorma.updateGoal()
+      outNorma
     }
     else { //* If the condition doesnt succeed, it will simply return itself
       this

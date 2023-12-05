@@ -4,6 +4,7 @@ package model.board
 import model.unit._
 import model.norma
 
+import cl.uchile.dcc.citric.model.game.GameController
 import cl.uchile.dcc.citric.model.norma.{Norma1, Norma2}
 import cl.uchile.dcc.citric.model.utility.InputHandler
 
@@ -72,7 +73,7 @@ class HomePanelTest extends munit.FunSuite {
 
   test("stop() function correctly calls for normaCheck()") {
     val currenthp = amigo1.getHP
-    amigo1.setNorma(new Norma1)
+    amigo1.setNorma(new Norma1(amigo1, new GameController))
     amigo1.setStars(-1)
     amigo1.setWins(-1)
     homePanel.stop(amigo1)

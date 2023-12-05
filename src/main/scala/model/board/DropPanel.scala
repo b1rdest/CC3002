@@ -13,7 +13,11 @@ class DropPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Play
                   nextPanelsInput){
 
   def stop(character: PlayerCharacter): Unit = {
+    println(character.getName + " has stopped in a Drop Panel! Oh no! ")
     var roll: Int = character.rollDice()
-    character.setStars(character.getStars - roll*character.getNorma.level)
+    println(character.getName + " has rolled " + roll.toString)
+    character.setStars(0.max(character.getStars - roll*character.getNorma.getLevel))
+    println(character.getName + " has lost " + (roll*character.getNorma.getLevel).toString + ", for a total of " + character.getStars.toString)
+    this.battlePlayer()
   }
 }

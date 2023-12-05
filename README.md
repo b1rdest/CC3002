@@ -34,16 +34,26 @@ purpose is to serve as an educational tool, teaching foundational programming co
 - All units are now *completely* tested!!!
 - Dead units can not be attacked now.
 - Improved privacy for *most* variables
+- PlayerUnit now has setter setPanel.
 
 #### For Board:
 - All boards are *mostly* tested
 - If a player lands on a tile with more than one player, they will alway fight the first one that appears on the list
 
 #### For Norma:
-- No changes.
+- New Abstract Class: NormaAbstract. made so it can implement the commmon method updateGoal()
+- Now Norma class has two new variables: player, and controller: the subscriber.
 
 #### Ideas:
-- Implement a template method for a general battle, then the steps change depending if the player is fighting another player or a wild unit. This could prevent code duplication
+- Implement a template method for a general battle, then the steps change depending if the player is fighting another player or a wild unit. This could prevent code duplication. For now, the Player vs WildUnit battle code is handled by the encounter panel, and the player vs player battle is handled by PanelAbstract
+
+#### Known Problems: 
+- Players can infinitely stop on their Home Panel, healing completely
+
+#### Solve Problems:
+- PlayerCharacter's currentPanel now is modified correctly
+- Fixed problem where dead GameUnits could be attacked
+- Fixed problem where GameUnits where able to have negative stars
 
 <div style="text-align:center;">
     <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License">

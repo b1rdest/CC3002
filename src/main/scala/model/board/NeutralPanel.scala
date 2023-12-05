@@ -12,6 +12,7 @@ class NeutralPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[P
                     nextPanelsInput) {
 
   def stop(character:PlayerCharacter): Unit = {
-    //* Nothing Happens*/
+    println(character.getName + " has stopped in a Neutral Panel! Nothing happens :/")
+    this.battlePlayer()
   }
 }
