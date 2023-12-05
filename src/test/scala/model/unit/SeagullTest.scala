@@ -35,8 +35,34 @@ class SeagullTest extends munit.FunSuite {
   }
 
 
+  test("GameUnit can attack") {
+    assert(amigo.attack() > -1)
+    amigo.setAlive(false)
+    assert(amigo.attack() == 0)
+  }
+
+  test("GameUnit can defend") {
+    val currenthp = amigo.getHP
+    amigo.defend(1)
+    assert(amigo.getHP < currenthp)
+    amigo.evade(1)
+    assert(amigo.getHP < currenthp)
+
+  }
+
+  test("GameUnit can evade") {
+    val currenthp = amigo.getHP
+    amigo.randomNumberGenerator.setSeed(1)
+    amigo.evade(1)
+    assert(amigo.getHP == currenthp)
+    amigo.randomNumberGenerator.setSeed(1)
+    amigo.evade(6)
+    assert(amigo.getHP < currenthp)
+  }
+
   test("KO() sets status to not alive and properly returns stars") {
     assert(amigo.KO() == 2)
     assert(!amigo.getAlive)
   }
 }
+

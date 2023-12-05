@@ -54,5 +54,24 @@ abstract class PanelAbstract(
     }
   }
   def stop(character:PlayerCharacter):Unit
+
+  def battlePlayer(): Unit = {
+    if (characters.length !=1) {
+
+    }
+  }
+
+  def addPanel(panel: Panel):Unit = {
+    this.nextPanels += panel
+  }
+
+  def addPanelatEnd(panel: Panel):Unit = {
+    if (this.nextPanels.isEmpty) {
+      this.addPanel(panel)
+    }
+    else {
+      this.nextPanels(0).addPanelatEnd(panel)
+    }
+  }
 }
 

@@ -40,7 +40,7 @@ trait Panel {
    *
    * @param player The player character to add to this panel.
    */
-  protected def addCharacter(player: PlayerCharacter): Unit
+  def addCharacter(player: PlayerCharacter): Unit
 
   /** Removes a character from the list of characters currently on this panel.
    *
@@ -48,9 +48,16 @@ trait Panel {
    *
    * @param player The player character to remove from this panel.
    */
-  protected def removeCharacter(player: PlayerCharacter): Unit
+  def removeCharacter(player: PlayerCharacter): Unit
 
   def move(character: PlayerCharacter, moves: Int): Panel
 
-  protected def stop(character: PlayerCharacter): Unit
+  def stop(character: PlayerCharacter): Unit
+
+  /** Appends a given panel to this.nextPanels **/
+  def addPanel(panel: Panel):Unit
+
+  /** Appends a given panel to the end of the this.nextPanels sequence **/
+  /** It will always prefer the first panel of its nextPanels list **/
+  def addPanelatEnd(panel: Panel):Unit
 }

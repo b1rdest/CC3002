@@ -73,9 +73,10 @@ class PlayerCharacterTest extends munit.FunSuite {
   test("KO() should return stars if player is alive, and 0 if they are not") {
     assert(character.KO() == character.getStars/2)
     assert(character.KO() == 0)
+    character.randomNumberGenerator.setSeed(2)
+    assert(character.KO() == 0)
   }
   test("NormaCheck() runs correctly when conditions are not fulfilled") {
-
     character.setStars(-1)
     character.setWins(-1)
     character.NormaCheck()

@@ -27,14 +27,28 @@ class NeutralPanelTest extends munit.FunSuite {
   }
 
   test("general PanelAbstract functions work properly") {
+    //addCharacter
     neutralpanel.addCharacter(amigo2)
     assert(neutralpanel.characters == ArrayBuffer[PlayerCharacter](amigo1, amigo2))
+    //removeCharacter
     neutralpanel.removeCharacter(amigo1)
     assert(neutralpanel.characters == ArrayBuffer[PlayerCharacter](amigo2))
+    //move
     neutralpanel.addCharacter(amigo1)
     neutralpanel.move(amigo1, 1)
     assert(panel2.characters == ArrayBuffer[PlayerCharacter](amigo1))
     panel2.move(amigo1, moves = 1)
     assert(panel1.characters == ArrayBuffer[PlayerCharacter](amigo1))
+    //addPanel
+    val panel3 = new NeutralPanel
+    neutralpanel.addPanel(panel3)
+    assert(neutralpanel.nextPanels(2) == panel3)
+    //addPanelatEnd
+    neutralpanel.nextPanels = ArrayBuffer[Panel]()
+    neutralpanel.addPanelatEnd(panel3)
+    assert(neutralpanel.nextPanels(0) == panel3)
+    val panel4 = new NeutralPanel
+    neutralpanel.addPanelatEnd(panel4)
+    assert(neutralpanel.nextPanels(0).nextPanels(0) == panel4)
   }
 }

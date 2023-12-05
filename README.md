@@ -8,17 +8,42 @@ purpose is to serve as an educational tool, teaching foundational programming co
 📢 **Note**: This project is purely educational and will not be used for any commercial purposes.
 
 ---
-## Entrega Parcial 5
-- Here is the flowchart (in comic sans!)for the whole game (the program starts in the white circle on top of the 
-flowchart).
+## Entrega Final 3 !!!!!!!!!!!!!!!!!1111
 
-![Diagrama de estados](docs/flowchart.png)
+## Patchnotes
 
-- There are some redundant states, with redundant transitions. This was done deliberately to be more specific with certain 
-exceptional states, like a player that reaches Norma level 6, or a Player that decides to stop on their Home Panel.
-- Also, the effects of Bonus, Drop and Neutral Panel have been grouped together. This is because they do not present any
-special transition to a new state, and are relatively self-contained.
-- The combat flowchart has been generalized for both Player vs WildUnit and Player vs Player.
+###  The game is (somehow) playable!!!!
+- Just execute the main file on the game folder and you will be able to play on the terminal. For some reason, only lowercase prompts work, despite being asked for an uppercase prompt.
+- Warning! It is very boring!
+
+#### ☆ New package game
+- GameController: Implements the State Design Pattern. It governs state transitions and stores important variables.
+- StartState: the first state of the game. It prompts the player for the name of the PlayerCharacters and sets up the Player list, the turn order and the board
+- ChapterStart: this state is called at the beginning of each chapter. It checks if all chapters have been played (99 by default), if true, the lead to the end of the game. If not, it simply jumps to the next turn.
+-
+
+#### ☆ New package: utility
+- InputHandler: object made for receiving terminal inputs. Made so it can be overriden in tests that require player input. Also avoids code duplication for prompts. It may prove to be a privacy risk, but it was the only way I found to test functions with inputs
+- Factory: trait for implementing the "Factory Method" Design Pattern
+- Player Factory: prompts the user for a name and creates a character with standard stats.
+- Enemy Factory: helps create enemies with two methods: one that creates a random creature, and another one that creates a specific enemy.
+- Random Panel Factory: creates a random panel between those that are defined, or creates a specific panel, excluding home panels
+- Board Factory: returns a sequence of Panels of an specified length.
+
+#### For Units:
+- All units are now *completely* tested!!!
+- Dead units can not be attacked now.
+- Improved privacy for *most* variables
+
+#### For Board:
+- All boards are *mostly* tested
+- If a player lands on a tile with more than one player, they will alway fight the first one that appears on the list
+
+#### For Norma:
+- No changes.
+
+#### Ideas:
+- Implement a template method for a general battle, then the steps change depending if the player is fighting another player or a wild unit. This could prevent code duplication
 
 <div style="text-align:center;">
     <img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License">
