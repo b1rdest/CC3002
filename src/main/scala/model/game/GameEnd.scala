@@ -3,11 +3,8 @@ package model.game
 import model.unit.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
+/** Purely a placeholder state */
 class GameEnd (controller: GameController) extends GameState {
-  def startGame(): Unit = {
-    //the winner is decided and then printed
-    println("Yipeeee")
-  }
 
   def rollDice(): Unit = {
 
