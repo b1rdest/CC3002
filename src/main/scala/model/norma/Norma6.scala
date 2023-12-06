@@ -16,7 +16,7 @@ class Norma6(playerInput: PlayerCharacter, controllerInput: GameController) exte
 
   def increase(wins: Int, stars: Int): Norma = {
     if (wins >= winGoal || stars >= starGoal) { //*
-      //player.update()
+      controller.updateWinner(this.player) //notifies the controller of the player who has won
       this // At this point, the player wins, update the controller.
     }
     else {

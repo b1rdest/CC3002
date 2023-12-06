@@ -49,5 +49,10 @@ class Norma1Test extends munit.FunSuite {
     assertEquals(norma.increase(-1,-1), norma)
     assert(norma.increase(1,1).isInstanceOf[Norma2])
   }
+  test("Test for WinGoal for the abstract class") {
+    norma.inputHandler = new InputHandlerTestW
+    assertEquals(norma.increase(-1, -1), norma)
+    assert(norma.increase(1, 1).isInstanceOf[Norma2])
+  }
 
 }

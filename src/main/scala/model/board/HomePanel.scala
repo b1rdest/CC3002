@@ -66,6 +66,7 @@ class HomePanel (charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer[Pla
 
       if (character == owner) {
         character.HP = character.maxHp.min(character.getHP + 1)
+        character.getNorma.inputHandler = inputHandler
         character.NormaCheck()
       }
       this.battlePlayer()

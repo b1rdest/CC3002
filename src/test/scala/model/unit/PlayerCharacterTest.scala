@@ -1,10 +1,14 @@
 package cl.uchile.dcc.citric
 package model.unit
 
+import cl.uchile.dcc.citric.model.board.NeutralPanel
 import cl.uchile.dcc.citric.model.game.GameController
 
 import scala.util.Random
 import cl.uchile.dcc.citric.model.norma._
+import cl.uchile.dcc.citric.model.utility.InputHandler
+
+import scala.collection.mutable.ArrayBuffer
 
 class PlayerCharacterTest extends munit.FunSuite {
   /*
@@ -71,6 +75,12 @@ class PlayerCharacterTest extends munit.FunSuite {
     }
   }
 
+  class InputHandlerTest extends InputHandler {
+    override def askForInput(possibleAnswers: ArrayBuffer[String], message: String): String = {
+      "s"
+    }
+  }
+
   test("KO() should return stars if player is alive, and 0 if they are not") {
     assert(character.KO() == character.getStars/2)
     assert(character.KO() == 0)
@@ -80,12 +90,14 @@ class PlayerCharacterTest extends munit.FunSuite {
   test("NormaCheck() runs correctly when conditions are not fulfilled") {
     character.setStars(-1)
     character.setWins(-1)
+    character.getNorma.inputHandler = new InputHandlerTest
     character.NormaCheck()
     assert((character.getNorma).isInstanceOf[Norma1])
     character.setStars(99)
     character.setWins(99)
     val norma2 = new Norma2(character, new GameController)
     character.setNorma(norma2)
+    character.getNorma.inputHandler = new InputHandlerTest
     character.NormaCheck()
     assert((character.getNorma).isInstanceOf[Norma3])
   }
@@ -108,6 +120,12 @@ class PlayerCharacterTest extends munit.FunSuite {
     assert(character.getWins == 1)
     character.receiveWins(idiot)
     assert(character.getWins == 3)
+  }
+  test("A character should be able to delegate move responsability to Panel") {
+    val panel = new NeutralPanel()
+    character.currentPanel = panel
+    character.move(0)
+    assert(character.currentPanel == panel)
   }
 
 }

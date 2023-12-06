@@ -53,7 +53,7 @@ class EncounterPanel(charactersInput: ArrayBuffer[PlayerCharacter] = ArrayBuffer
       else {
         val decision = inputHandler.askForInput(ArrayBuffer[String]("DEF", "EVA"), "Choose " +
           "how you're gonna receive the attack! [DEF]/[EVA]")
-        if (decision == "DEF") {
+        if (decision == "DEF" | decision == "def") {
           character.defend(enemy.attack())
         }
         else {

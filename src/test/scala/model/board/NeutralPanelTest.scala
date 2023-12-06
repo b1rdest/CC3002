@@ -51,4 +51,10 @@ class NeutralPanelTest extends munit.FunSuite {
     neutralpanel.addPanelatEnd(panel4)
     assert(neutralpanel.nextPanels(0).nextPanels(0) == panel4)
   }
+
+  test("Tests for battlePlayer() function on abstract class") {
+    val neutralPanel = new NeutralPanel()
+    assert(neutralPanel.characters.isEmpty)
+    neutralPanel.battlePlayer()
+  }
 }

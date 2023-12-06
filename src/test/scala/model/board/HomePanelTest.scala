@@ -45,23 +45,21 @@ class HomePanelTest extends munit.FunSuite {
 
   test("move function lets the player stay only if they are the owner") {
 
-
+    homePanelEmpty.setHandler(new InputHandlerTestY)
     homePanelEmpty.move(amigo1, 0)
     assert(homePanel.characters == ArrayBuffer[PlayerCharacter](amigo1))
     homePanelEmpty.removeCharacter(amigo1)
-
     homePanelEmpty.setHandler(new InputHandlerTestY)
     homePanelEmpty.move(amigo1, 1)
     assert(homePanel.characters == ArrayBuffer[PlayerCharacter](amigo1))
     homePanelEmpty.removeCharacter(amigo1)
-
     homePanelEmpty.setHandler(new InputHandlerTestN)
     homePanelEmpty.nextPanels = ArrayBuffer[Panel](panel1)
     homePanelEmpty.move(amigo1, 1)
     assert(homePanelEmpty.characters == ArrayBuffer[PlayerCharacter]())
-
     homePanelEmpty.setHandler(new InputHandlerTestY)
-    homePanelEmpty.move(amigo2, 1)
+    homePanelEmpty.addPanelatEnd(new NeutralPanel())
+    homePanelEmpty.move(amigo2, 2)
     assert(homePanelEmpty.characters == ArrayBuffer[PlayerCharacter]())
   }
 
@@ -72,6 +70,7 @@ class HomePanelTest extends munit.FunSuite {
   }
 
   test("stop() function correctly calls for normaCheck()") {
+    amigo1.setHP(amigo1.getHP-1)
     val currenthp = amigo1.getHP
     amigo1.setNorma(new Norma1(amigo1, new GameController))
     amigo1.setStars(-1)

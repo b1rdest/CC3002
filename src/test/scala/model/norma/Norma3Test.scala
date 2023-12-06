@@ -4,6 +4,10 @@ package model.norma
 import model.game.GameController
 import model.unit.PlayerCharacter
 
+import cl.uchile.dcc.citric.model.utility.InputHandler
+
+import scala.collection.mutable.ArrayBuffer
+
 class Norma3Test extends munit.FunSuite {
   private val level = 3
   private val starGoal = 30
@@ -19,14 +23,28 @@ class Norma3Test extends munit.FunSuite {
     norma4 = new Norma4(player, controller)
   }
 
+  class InputHandlerTestS extends InputHandler {
+    override def askForInput(possibleAnswers: ArrayBuffer[String], message: String): String = {
+      "s"
+    }
+  }
+
+  class InputHandlerTestW extends InputHandler {
+    override def askForInput(possibleAnswers: ArrayBuffer[String], message: String): String = {
+      "w"
+    }
+  }
 
   test("A Norma should have correctly set their attributes") {
     assertEquals(norma3.getLevel(), level)
     assertEquals(norma3.getStarGoal(), starGoal)
     assertEquals(norma3.getWinsGoal(), winGoal)
+    assertEquals(norma3.getPlayer(), player)
+    assertEquals(norma3.getController(), controller)
   }
 
   test("A Norma increase should either return itself or return a norma of the next level") {
+    norma3.inputHandler = new InputHandlerTestS
     assertEquals(norma3.increase(-1,-1), norma3)
     assert(norma3.increase(999,999).isInstanceOf[Norma4])
   }

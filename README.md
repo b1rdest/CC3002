@@ -16,11 +16,14 @@ purpose is to serve as an educational tool, teaching foundational programming co
 - Just execute the main file on the game folder and you will be able to play on the terminal. For some reason, only lowercase prompts work, despite being asked for an uppercase prompt.
 - Warning! It is very boring!
 
+### To do list:
+- Terminate a more complex implementation of the Observer pattern for the victory condition
+- Test and handle exceptions
+
 #### ☆ New package game
 - GameController: Implements the State Design Pattern. It governs state transitions and stores important variables.
 - StartState: the first state of the game. It prompts the player for the name of the PlayerCharacters and sets up the Player list, the turn order and the board
 - ChapterStart: this state is called at the beginning of each chapter. It checks if all chapters have been played (99 by default), if true, the lead to the end of the game. If not, it simply jumps to the next turn.
--
 
 #### ☆ New package: utility
 - InputHandler: object made for receiving terminal inputs. Made so it can be overriden in tests that require player input. Also avoids code duplication for prompts. It may prove to be a privacy risk, but it was the only way I found to test functions with inputs
@@ -35,6 +38,7 @@ purpose is to serve as an educational tool, teaching foundational programming co
 - Dead units can not be attacked now.
 - Improved privacy for *most* variables
 - PlayerUnit now has setter setPanel.
+- PlayerUnit now has variable controller: GameController, which is passed to norma, so the Observer pattern can be constructed
 
 #### For Board:
 - All boards are *mostly* tested
@@ -50,7 +54,7 @@ purpose is to serve as an educational tool, teaching foundational programming co
 #### Known Problems: 
 - Players can infinitely stop on their Home Panel, healing completely
 
-#### Solve Problems:
+#### Solved Problems:
 - PlayerCharacter's currentPanel now is modified correctly
 - Fixed problem where dead GameUnits could be attacked
 - Fixed problem where GameUnits where able to have negative stars

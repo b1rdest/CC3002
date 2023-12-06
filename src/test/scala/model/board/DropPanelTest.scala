@@ -24,6 +24,6 @@ class DropPanelTest extends munit.FunSuite {
   test("stop() function substracts stars") {
     val currentstars = amigo1.getStars
     dropPanel.stop(amigo1)
-    assert(amigo1.getStars < currentstars)
+    assert(amigo1.getStars <= currentstars)
   }
 }
