@@ -2,16 +2,15 @@ package cl.uchile.dcc.citric
 package model.utility
 
 import model.board._
-
 import cl.uchile.dcc.citric.exceptions.InvalidPanelCreation
-
 import scala.util.Random
+
 /* Creates a random Panel from all the available types
 * except HomePanel*/
 class RandomPanelFactory extends Factory{
-  /* Creates a random panel */
   var random: Random = new Random()
-
+  
+  /* Creates a random panel */
   def create(): Panel = {
     val decision: Int = random.nextInt(4)
     if (decision == 0) { //Creates a Neutral Panel
