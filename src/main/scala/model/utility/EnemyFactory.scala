@@ -3,12 +3,13 @@ package model.utility
 
 import scala.util.Random
 import model.unit.{Chicken, GameUnit, RoboBall, Seagull}
-
 import cl.uchile.dcc.citric.exceptions.InvalidEnemyCreation
 
+/* Class made for returning new enemies with two methods: one that creates a random creature, and another one that creates a specific enemy.*/
 class EnemyFactory extends Factory {
-  /* Creates a random enemy */
   var random: Random = new Random()
+  
+  /* Creates a random enemy from the implemented enemies below. Must be updated every time a new enemy is created.*/
   def create(): GameUnit = {
     val decision: Int = random.nextInt(3)
     if (decision == 0) { //Creates a Chicken
@@ -22,7 +23,7 @@ class EnemyFactory extends Factory {
     }
   }
 
-  /* Overloaded function to create a specific enemy */
+  /* Overloaded function to create a specific enem. yMust be updated every time a new enemy is created. */
   def create(creature: String): GameUnit = {
     if (creature == "Chicken") { //Creates a Chicken
       new Chicken()
