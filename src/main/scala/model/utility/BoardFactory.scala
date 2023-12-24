@@ -4,7 +4,7 @@ package model.utility
 import model.board._
 
 /* Creates a sequence of random panels (excluding HomePanel) of a defined size
-* The first panel (always a neutral panel )is returned */
+The first panel (always a neutral panel) is returned. The following panels can be accessed with the nextPanels variable.*/
 class BoardFactory extends Factory {
   def create(length: Int): Panel = {
     val factory = new RandomPanelFactory
@@ -16,7 +16,8 @@ class BoardFactory extends Factory {
     }
     panelInicial
   }
-  /* Creates a sequence of only one panel */
+  
+  /* By default, creates a sequence of only one panel */
   def create():Panel = {
     create(1)
   }
